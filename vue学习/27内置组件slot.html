@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <!--放在vue下面-->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body >
+<div id="app">
+
+
+    <zujian>
+        <!-- 传值的办法  slot左右不能有空格-->
+        <span slot="slotUrl">{{zujianData.zujianUrl}}</span>
+        <span slot="slotNetName">{{zujianData.netName}}</span>
+        <span slot="slotSkill">{{zujianData.skill}}</span>
+    </zujian>
+
+
+
+</div>
+
+<!--模版-->
+<template id="tep">
+    <!--2.0 要求必须外面嵌套div-->
+   <div>
+       <!--<slot name="slotUrl"></slot> 接收值-->
+       <p>博客地址：<slot name="slotUrl"></slot></p>
+       <p>网名：<slot name="slotNetName"></slot></p>
+       <p>技能：<slot name="slotSkill"></slot></p>
+   </div>
+</template>
+</body>
+</html>
+<script type="text/javascript">
+    var jspang= {
+        template:'#tep'
+    }
+
+    var app = new  Vue({
+        el:'#app',
+        data:{
+            zujianData:{
+                zujianUrl:'http://jspang.com/2017/04/09/vue2_4/4/',
+                netName:'jishupang',
+                skill:'web前端'
+            }
+        },
+        components:{ //组件
+            'zujian':jspang
+        }
+    });
+
+
+</script>

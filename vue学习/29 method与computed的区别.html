@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" style="width: 1000px;margin: 100px auto">
+        <p>{{message}}</p>
+        //直接在模板中绑定表达式
+        <p>{{message.split('').reverse().join('')}}</p>
+
+        //运用计算属性
+        <p>{{reverseMessage}}</p>
+
+        //运用methods方式
+        <div>{{methodMessage()}}</div>
+        <br>
+        //  区别
+        <div>写但在法上computed计算属性的方式在用属性时不用加()</div>
+        <div>而methods方式在使用时要像方法一样去用，必须加().</div>
+        <br>
+        //两种方式在缓存上也大有不同
+        <p>利用computed计算属性是将 reverseMessage与message绑定，只有当message发生变化时才会触发reverseMessage，</p>
+        <p>而methods方式是每次进入页面都要执行该方法，但是在利用实时信息时，比如显示当前进入页面的时间，必须用methods方式</p>
+    </div>
+</body>
+</html>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            message:"hello"
+        },
+        computed:{ //操作数据
+            reverseMessage:function(){
+                return this.message.split('').reverse().join('');
+            }
+        },
+        methods:{ //每次页面进入  实时时间
+            methodMessage:function () {
+                return this.message.split('').reverse().join('');
+            }
+        }
+
+    })
+</script>

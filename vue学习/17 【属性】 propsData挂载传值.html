@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<div id="app">
+    <header></header>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var header_a = Vue.extend({
+        template:`<p>{{message}}{{a}}{{b}}</p>`,
+        data:function(){
+            return {
+                message:'Hello,word'
+            }
+        },
+        props:['a','b']  //挂载传值
+    })
+
+    new header_a({propsData:{a:',123',b:',456'}}).$mount('header') //挂载
+</script>

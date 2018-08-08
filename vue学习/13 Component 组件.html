@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<p>指令和组件的的区别</p>
+<p>指令：定义的是标签属性，angular擅长</p>
+<p>组件：定义的是标签， react 擅长</p>
+
+<div id="app">
+    <div  class="jumbotron">
+        <h3>定义全局组件</h3>
+        <zujian></zujian>
+    </div>
+</div>
+
+<div id="add">
+    <div  class="jumbotron">
+        <zujian></zujian>
+    </div>
+</div>
+
+<div id="dda">
+    <div  class="jumbotron">
+        <panda></panda>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    //组件
+     Vue.component('zujian',{
+         template:'<div style="color: red;font-size: 18px;">这是全局组件</div>'
+     });
+
+    var app = new  Vue({
+        el:'#app',
+        data:{
+            message:'欢迎光临',
+        }
+    });
+    var add = new  Vue({
+        el:'#add',
+        data:{
+            message:'欢迎光临',
+        }
+    });
+
+    var dda = new  Vue({
+        el:'#dda',
+        components:{
+            //必须时字符串
+            "panda":{
+                template:`<div style="color: green;font-size: 18px;">这是局部的组件</div>`
+            }
+        }
+    })
+</script>

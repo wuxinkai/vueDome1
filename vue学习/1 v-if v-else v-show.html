@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+    <div id="app">
+        <div  class="jumbotron">
+            <h1>v-if & v-else & v-show</h1>
+            <div v-show="isShow">v-if是判断是否加载，false是不加载dom的 ，v-show 是显示隐藏</div>
+            <div v-if="isLogin">{{message}}</div>
+            <div v-else>请登陆</div>
+        </div>
+
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var app = new  Vue({
+        el:'#app',
+        data:{
+            message:'欢迎光临',
+            isLogin:true,
+            isShow:true,
+        }
+    })
+</script>

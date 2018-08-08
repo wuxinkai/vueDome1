@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>$mount方法是用来挂载我们的扩展的</p>
+    {{message}}
+</div>
+<button onclick="destroy()">点击销毁</button>
+<button onclick="reload()">刷新</button>
+<button onclick="tick()">数据被更改</button>
+</body>
+</html>
+<script type="text/javascript">
+    var guazai = Vue.extend({
+        template:`<p>{{message}}</p>`,
+        data:function(){
+            return {
+                message:'这是要挂载的内容'
+            }
+        },
+        mounted:function(){
+            console.log('mounted 被创建')
+        },
+        destroyed:function(){ //生命周期的钩子函数
+            console.log('卸载 销毁之后 就会被调用')
+        },
+        updated:function(){
+            console.log('更新被调用')
+        }
+    })
+    var vm = new guazai().$mount('#app')
+
+    //销毁
+    function destroy(){
+        vm.$destroy() //$destroy
+    }
+    //更新
+    function reload(){
+        vm.$forceUpdate() //
+    }
+    //数据被修改的 $nextTick() 数据修改方法
+    function tick(){
+        vm.message="update message info ";
+        vm.$nextTick(function(){
+            console.log('message更新完后我被调用了');
+        })
+    }
+</script>

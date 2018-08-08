@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <!--放在vue下面-->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body >
+<div id="app">
+    <p>例就是在构造器外部操作构造器内部的属性选项或者方法，就叫做实例</p>
+    <p>实例的作用就是给原生的或者其他javascript框架一个融合的接口或者说是机会，让Vue和其他框架一起使用。</p>
+   {{message}}
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var app = new  Vue({
+        el:'#app',
+        data:{
+            message:'欢迎光临',
+            isLogin:true,
+            isShow:true,
+        },
+        mounted:function(){  //只要这里和updated 中才能用jquery中才能用，没有挂载用是找不到dom的
+            //dom 挂载后才能用
+
+            $('#app').html('w我是jquery')
+            console.log('1')
+        },
+        methods:{
+            add:function(){
+                console.log('调用 构造器内部的 add方法')
+            }
+        }
+    })
+
+    //构造器外面用里面方法
+    app.add()
+</script>

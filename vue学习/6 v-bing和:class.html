@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <style>
+        .classA{color: red;font-size: 39px}
+        .classB{color: blue;font-size: 39px}
+    </style>
+</head>
+<body >
+<!--<p>v-bind指令用于设置HTML属性：v-bind:href  缩写为 :href</p>-->
+<!--<p>v-on 指令用于绑定HTML事件 ：v-on:click 缩写为 @click</p>-->
+<div id="app">
+    <img width="400" height="400" v-bind:src="imgSrc" alt="">
+    <a :href="aHref">v-bind:herf的应用</a>
+    <p :class="{classA:isOk}">这是一个案例</p>
+    <br>
+    <div>
+        <input type="checkbox" id="isOk" v-model="isOk">
+        <label for="isOk">这是一个点击事件 isOk={{isOk}}</label>
+    </div>
+    <br>
+    <div>
+        <p :class="[classA,classB]">绑定的是数组</p>
+        <p :class="isBox?classA:classB">绑定的是数组</p>
+        <p :style="styleObject">绑定的是数组</p>
+    </div>
+    <div>
+        <input type="checkbox" id="isBox" v-model="isBox">
+        <label for="isBox">这是一个点击事件 isBox={{isBox}}</label>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var app = new  Vue({
+        el: '#app',
+        data: {
+            imgSrc:'ad-3.jpg',
+            aHref:'javascript:;',
+            isOk:false,
+            classA:'classA',
+            classB:'classB',
+            isBox:true,
+            styleObject:{
+                fontSize:'16px',
+                color:'#ccc'
+
+            }
+        }
+    })
+
+</script>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>自定义指令</h3>
+    <h3>自定义指令有五个生命周期（也叫钩子函数），分别是 bind,inserted,update,componentUpdated,unbind</h3>
+    <p>1 bind:只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个绑定时执行一次的初始化动作。</p>
+    <p>2 inserted:被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于document中）</p>
+    <p>3 update:被绑定于元素所在的模板更新时调用，而无论绑定值是否变化。通过比较更新前后的绑定值，可以忽略不必要的模板更新。</p>
+    <p>4 componentUpdated:被绑定元素所在模板完成一次更新周期时调用。</p>
+    <p>5 unbind:只调用一次，指令与元素解绑时调用。</p>
+    <div v-xiaoming="color">{{num}}</div>
+    <button @click="add"> add</button>
+
+</div>
+<button onclick="jiebang()"> 解绑调用</button>
+</body>
+</html>
+<script type="text/javascript">
+    //自定义指令
+    // Vue.directive('xiaoming',function(el,binding){
+    //     console.log(el)
+    //     el.style = 'color:'+binding.value;
+    //     console.log(binding)
+    // });
+
+    function jiebang(){
+        app.$destroy() //销毁 解绑
+    }
+
+    Vue.directive('xiaoming',{
+        bind:function(el,binding){//被绑定  只调用一次，指令第一次绑定到元素时调用
+            console.log(binding);
+            console.log('1 - bind 被绑定调用');
+            el.style = 'color:'+binding.value;
+        },
+        inserted:function(){//绑定到节点 ;被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于document中）
+            console.log('2 - inserted  插入父节');
+        },
+        update:function(){//组件更新，更新时被调用 元素值发生改变 被调用 经常用
+            console.log('3 - update  更新');
+        },
+        componentUpdated:function(){//组件更新完成，完成时被调用 ，被绑定元素所在模板完成一次更新周期时调用
+            console.log('4 - componentUpdated  更新完成');
+        },
+        unbind:function(){//解绑时被调用
+            console.log('5 - unbind');
+        }
+    });
+
+
+    var app = new Vue({
+        el:'#app',
+        data:{
+            num:10,
+            color:'red'
+        },
+        methods:{
+            add:function(){
+                this.num++
+            }
+        }
+    })
+</script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<div id="app">
+    <div  class="jumbotron">
+       {{message}}
+    </div>
+<!-- 2模版 -->
+    <template id="dd2"> <h2 style="color: red">标签模版</h2></template>
+<!--3 模版 可以外部引用-->
+    <script type="x-template" id="dd3">
+        <h2 style="color: red">script标签模版</h2>
+    </script>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var app = new  Vue({
+        el:'#app',
+        data:{
+            message:'欢迎光临',
+        },
+        //1模版
+        // template:` <h2 style="color: red">选项模版</h2>`,
+        template:'#dd3',
+    })
+</script>

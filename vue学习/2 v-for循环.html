@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<div id="app">
+
+    <!-- v-for循环 -->
+    <h1>v-for 数组循环</h1>
+    <ul class="list-group">
+        <li class="list-group-item"  v-for="item in sortItems">{{item}}</li>
+    </ul>
+    <br>
+    <h3>对象循环</h3>
+    <ul class="list-group">
+        <li class="list-group-item"  v-for="(students, index) in sortStudents">
+            {{index+1}} --{{students.name}} -- {{students.age}}
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var app = new  Vue({
+        el:'#app',
+        data:{
+            items2:[12,23,7,56],
+            students:[
+                {name:'wuxinkai',age:18},
+                {name:'xiaoming',age:27},
+                {name:'xiaohuang',age:23},
+            ]
+        },
+        computed:{
+            sortItems:function(){ //在输出data中的items2之前，进行的编程
+                return this.items2.sort(sortNumber)
+            },
+            sortStudents:function(){
+                return sortByKey(this.students,'age') //按照age排序
+            }
+        }
+    })
+    //数组排序
+    function sortNumber(a,b){  //解决 7排在最后问题
+        return a-b
+    }
+
+    //数组对象方法排序:
+    function sortByKey(array,key){
+        return array.sort(function(a,b){
+            var x=a[key];
+            var y=b[key];
+            return ((x<y)?-1:((x>y)?1:0));
+        });
+    }
+</script>

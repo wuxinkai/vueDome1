@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<div id="app">
+   <p>今天天气：{{wendu}}</p>
+   <p>c穿衣建议：{{chuanyi}}</p>
+    <p><button @click="shengao">升高温度</button></p>
+    <p><button @click="jiangdi">降低温度</button></p>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    var suggestion=['T恤短袖','夹克长裙','棉衣羽绒服'];
+    var app = new Vue({
+        el:'#app',
+        data:{
+            wendu:14,
+            chuanyi:'夹克长裙'
+        },
+
+        methods:{
+            shengao:function(num,$event){
+                this.wendu+=5
+            },
+            jiangdi:function(num,$event){
+                this.wendu-=5
+            }
+        },
+        // watch:{  //构造器的监听作用
+        //     wendu:function(newVal,oldVal){
+        //         if(newVal>26){
+        //            this.chuanyi =suggestion[0]
+        //         }else if(newVal < 26 && newVal>0){
+        //             this.chuanyi =suggestion[1]
+        //         }else {
+        //             this.chuanyi =suggestion[2]
+        //         }
+        //     }
+        // }
+    })
+
+    //$watch外部应用  实例的应用
+    app.$watch('wendu',function(newVal,oldVal){
+        if(newVal>26){
+            this.chuanyi =suggestion[0]
+        }else if(newVal < 26 && newVal>0){
+            this.chuanyi =suggestion[1]
+        }else {
+            this.chuanyi =suggestion[2]
+        }
+    })
+</script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<div id="app">
+    <h6 v-pre>页面显示花括号: {{modelValue}}</h6>
+    <p>v-pre 目的就是显示花括号</p>
+    <h6 v-cloak>v-cloak渲染完成后才执行的方法，这个经常会用的</h6>
+    <br>
+    <div v-once>v-once只渲染一次{{message}}</div>
+    <div>渲染多次{{message}}</div>
+    <div><input type="text" v-model="message"></div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var app = new  Vue({
+        el: '#app',
+        data: {
+            modelValue:'不显示这个数据源',
+            message:'o-once'
+        },
+        // methods:{
+        //
+        // }
+    })
+
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<div id="app">
+    分数:{{fenshu}}
+    <br>
+    <button v-on:click="jiafen">加分</button>
+    <button @click="jianfen">减分</button>
+
+    <!--键盘码 事件-->
+    <input type="text" v-on:keyup.enter="onenter" v-model="fenshu2">
+    <input type="text" v-on:keyup.16="onenter" v-model="fenshu2">
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var app = new  Vue({
+        el: '#app',
+        data: {
+           fenshu:0,
+           fenshu2:1
+        },
+        methods:{
+            jiafen:function(){
+                this.fenshu++
+            },
+            jianfen:function(){
+                this.fenshu--
+            },
+            //回车事件
+            onenter:function(){
+                this.fenshu = this.fenshu + parseInt(this.fenshu2)
+            }
+        }
+    })
+
+</script>

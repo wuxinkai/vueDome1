@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<div id="app">
+    <p>num:{{ num }}</p>
+    <P><button @click="add">增加数量</button></P>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var bbb={
+        created:function(){
+            console.log("我是被扩展出来的");
+        },
+        methods:{ //方法名相同只执行 构造器里的内容
+            add:function(){
+                console.log('我是被扩展出来的方法！');
+            }
+        }
+    };
+
+    var app = new Vue({
+        el:'#app',
+        data:{
+            num:1
+        },
+
+        methods: {
+            add:function(){
+                console.log('我是原生方法');
+                this.num++
+            }
+        },
+        extends:bbb //扩展只能放对象，不能放数组
+    })
+
+
+
+</script>

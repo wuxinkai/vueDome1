@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<div id="app">
+    <h6>这是: {{modelValue}}</h6>
+
+    <br>
+    <h6>双向数据绑定</h6>
+    <input  type="text"  v-model="modelValue">
+    <br>
+    <br>
+    <h6>这是: {{modelValue2}}</h6>
+    <h6>lazy懒加载：失去焦点才会改变数据</h6>
+    <input type="text"  v-model.lazy="modelValue2">
+    <br>
+    <br>
+    <h6>这是: {{modelValue3}}</h6>
+    <h6>number 先输入数字后面是字符串就不会加载</h6>
+    <input type="text"  v-model.number="modelValue3">
+    <br>
+    <br>
+    <h6>这是: {{modelValue4}}</h6>
+    <h6>trim</h6>
+    <input type="text"  v-model.trim="modelValue4">
+
+    <br>
+    <br>
+   <div class="col-md-6">
+       <input type="checkbox" v-model=" isTrue">
+       <label >{{isTrue}}</label>
+       <p>
+           第一个<input type="checkbox" id="p1" value="xiaoming" v-model="web_names">
+           第二个<input type="checkbox" id="p2" value="xiaojun" v-model="web_names">
+           第三个<input type="checkbox" id="p13" value="xiaoli" v-model="web_names">
+       </p>
+       <p>{{web_names}}</p>
+   </div>
+    <br>
+    <br>
+    <h6>单选框</h6>
+    <p>
+        <input type="radio" id="one" value="男" v-model="sex">
+        <input type="radio" id="toe" value="女" v-model="sex">
+    </p>
+    <p>性别：{{sex}}</p>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var app = new  Vue({
+        el: '#app',
+        data: {
+            modelValue:'数据源',
+            modelValue2:'数据源2',
+            modelValue3:'必须是数字',
+            modelValue4:'删除空格',
+            isTrue:true,
+            web_names:[],
+            sex:'男'
+        },
+        // methods:{
+        //
+        // }
+    })
+
+</script>

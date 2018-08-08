@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<div id="app">
+   <p> {{a}}</p>
+    <button @click="add(2,$event)">diansji</button>
+    <br>
+    <p>
+        <!-- 组件调用构造器方法 必须加native 否则按钮不执行，调用原始的方法-->
+        <btn @click.native="add(2,$event)"></btn>
+    </p>
+</div>
+<!--作用域 外面调用app里add的方法-->
+<button onclick="app.add(3)">外部点击事件</button>
+</body>
+</html>
+<script type="text/javascript">
+    var btn ={
+        template:`<button>组件点击事件</button>`
+    }
+
+
+    var app = new Vue({
+        el:'#app',
+        data:{
+           a:1
+        },
+        components:{
+          "btn":btn //挂载组件
+        },
+       methods:{ //主要写事件  点击事件 鼠标事件
+            add:function(num,$event){
+                if(num!=''){
+                    this.a+=num
+                }else{
+                    this.a++
+                }
+                console.log($event.target)
+            }
+       }
+    })
+
+</script>

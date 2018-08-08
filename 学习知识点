@@ -1,0 +1,7 @@
+（1）name 传参  不常用
+    传递方法：路由name传递参数 {path:'/',name: '当前页面',component:Hi},
+    接收方法：接收用{{$route.name}} 结果：当前页面
+
+（2）通过params 传参 name值必须和 路由对应上, to前面加冒号
+    传递方法：在App.vue文件中 ，:to="{name:'hi1',params:{userName:'这是app.vue传递的参数'}}"
+    接收方法：{{$route.params.userName}}

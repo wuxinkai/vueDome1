@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<div id="app">
+        <div  class="jumbotron">
+            <panda form-here="['Chine','']"></panda>
+        </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var app = new  Vue({
+        el:'#app',
+
+         components:{
+             //必须时字符串
+             "panda":{
+                 template:`<div style="color: green;font-size: 18px;">这是局部的组件,{{formHere}}</div>`,
+                 props:['formHere']
+             }
+         }
+    })
+</script>

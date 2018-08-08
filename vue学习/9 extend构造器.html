@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<div >
+<h3>扩展实例构造器</h3>
+    <br>
+    <div id="author"></div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    var authorURL = Vue.extend({
+        template:"<p><a :href='authorURL'>{{authorName}}</a></p>",
+        data:function(){
+            return{
+                authorName:'链接跳转到技术胖网站',
+                authorURL:'http://jspang.com/2017/03/14/vue2_02/'
+            }
+        }
+    })
+    //加载出来,绑定到页面
+    new authorURL().$mount("#author")
+
+</script>

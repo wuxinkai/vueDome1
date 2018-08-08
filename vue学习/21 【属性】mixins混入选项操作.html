@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body >
+<div id="app">
+    <p>num:{{ num }}</p>
+    <P><button @click="add">增加数量</button></P>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    //新添加的需求
+    //额外临时加入时，用于显示日志
+    var addLog={
+        updated:function(){
+            console.log("数据放生变化,变化成"+this.num+".");
+        }
+    };
+    Vue.mixin({ //全局的 少一个s  必须放在app的上面
+        updated:function(){
+            console.log('我是全局被混入的');
+        }
+    });
+
+    var app = new Vue({
+        el:'#app',
+        data:{
+            num:1
+        },
+
+        methods: {
+            add:function(){
+                this.num++
+            }
+        },
+        updated:function(){ //原色的， 原声后执行
+          console.log('原生的，updated')
+        },
+        mixins:[ //新需求的混入 的   混入先执行
+            addLog
+        ]
+    })
+
+
+
+</script>
